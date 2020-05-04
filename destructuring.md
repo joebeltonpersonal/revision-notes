@@ -17,4 +17,10 @@
 
         const Component = ({ wardrobe }) => {
             console.log(wardrobe)
-        })
+        }
+
+    Or even destructure prop objects:
+
+        const Component = ({ wardrobe: { name, colour }}) => {
+            console.log(name)
+        }
