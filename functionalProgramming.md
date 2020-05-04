@@ -185,14 +185,65 @@
 
                 console.log(divideSafe(7, 0));
 
+            Another example:
+
+                const words = ['joe', 'dog', 'cat', 'ruubarb', 'donkey'];
+
+                const createLengthTest = minLength =>
+                    word => word.length > minLength; // returns this function
+
+                const isLongerThan4 = createLengthTest(4);
+
+                const longWords = words.filter(isLongerThan4) // inside here
+
         https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments
 
 
 ####A guide to clean code - https://levelup.gitconnected.com/javascript-clean-code-solid-9d135f824180
 
+####Tips: 
+- If there is a scenario where you're using defining a new array and and looping over an existing array and pushing into the new array chances are there is a function to help with that e.g map, filter etc
+- !! converts an Object to a boolean so that any falsey values will return false such as empty string
+- Calling the slice() method on an array with no parameters slice() will copy the whole array and allow you to call other methods after such as array.slice().reverse() in order to avoid mutating the original array e.g
+`const clonedArray = array.slice()`
+    
+        // WILL NOT CLONE
+        const array = ['joe', 'poe', 'goe']
+        const arrayClone = array;
 
+        arrayClone.push('howard')
 
+        console.log(array) // [ 'joe', 'poe', 'goe', 'howard' ]
+        console.log(arrayClone) // [ 'joe', 'poe', 'goe', 'howard' ]
 
+        // WILL CLONE
+
+        const array = ['joe', 'poe', 'goe']
+        const arrayClone = array.slice();
+
+        arrayClone.push('howard')
+
+        console.log(array) // [ 'joe', 'poe', 'goe' ]
+        console.log(arrayClone) // [ 'joe', 'poe', 'goe', 'howard' ]
+- Reduce method takes an array and depending on the function provided makes 1 value out of the array:
         
+        const sum = myArray.reduce((acc, element) =>
+            acc + element, 0)
+        // The 0 is the value that the accumalator should initialise as, this depends on the expected output if returning an array it should start as an empty array
+        // The acc is the accumalator which is the sum that the element is being put into eachtime so in this instance the result that each value in the array is being added into.
+        // The element is each element in the array
 
+## Advanced Functional Concepts:
 
+    Partial application is useful when one argument in a function is always the same and simply involves fixing that argument in the function to the set value:
+
+        const add = (x, y, x) => x + y + z;
+
+        // could me turned into:
+
+        const add5 = (x, y) => 5 + y + z;
+    
+
+####Things to learn in more detail and try for myself next:
+- Higher order functions
+- Reduce
