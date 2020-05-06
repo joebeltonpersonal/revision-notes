@@ -235,13 +235,31 @@
 
 ## Advanced Functional Concepts:
 
-    Partial application is useful when one argument in a function is always the same and simply involves fixing that argument in the function to the set value:
+    Partial application or Currying is useful when one argument in a function is always the same and simply involves fixing that argument in the function to the set value:
 
         const add = (x, y, x) => x + y + z;
 
         // could me turned into:
 
         const add5 = (x, y) => 5 + y + z;
+
+        // or even better this:
+
+        const add = (x, y, x) => x + y + z;
+
+        const addPartial = x => y => => z => add(x, y, z);
+
+        const add5 = addpartial(6);
+        const add5and6 = add5(6);
+        const sum = add5and6(7);
+
+        // could be turned into this:
+
+        const add = (x, y, x) => x + y + z;
+
+        const addPartial = x => y => => z => add(x, y, z);
+
+        const sum = addPartial(5)(6)(7)
     
 
 ####Things to learn in more detail and try for myself next:
